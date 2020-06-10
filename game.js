@@ -11,7 +11,7 @@ var cardlist = null;
 var TotalMatches = 0;
 //sound Vars
 //var ErrorSound = new Audio('error.mp3');
-// Score Vars 
+// Score Vars adas
 var HighscoreListElement = null;
 var highscoreList = [];
 var TotalTries = 0;
