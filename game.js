@@ -20,7 +20,7 @@ var ScoreMult = 1;
 var GameScore = 0;
 var TotalTriesElement = null;
 var GameScoreElement = null;
-
+//JV heavy Edit
 var init = 1;
 //const testvar = JSON.parse(localStorage.getItem('highscoresList')) || [];
 
