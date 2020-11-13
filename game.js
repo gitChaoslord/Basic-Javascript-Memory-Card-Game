@@ -20,11 +20,10 @@ var ScoreMult = 1;
 var GameScore = 0;
 var TotalTriesElement = null;
 var GameScoreElement = null;
-//JV heavy Edit
-var init = 1;
-//const testvar = JSON.parse(localStorage.getItem('highscoresList')) || [];
 
-//kapoia elements den uparxoun mexri na kanei 'complete' load i selida kai ta functions de briskane ta objects
+var init = 1;
+
+//Some elements do not exist until the page has finished loading
 window.onload = function() {
     cardlist = document.getElementById("CardList");
     TotalTriesElement = document.getElementById("Tries");
@@ -33,6 +32,7 @@ window.onload = function() {
     RandomizeCards();
     RebuildHighscores();
 }
+
 function RandomizeCards(){
     // re-initiliaze game aka reset button is pressed
     FirstCard = null;
@@ -60,6 +60,7 @@ function RandomizeCards(){
     }
     
 }
+
 function DisplayCard(element){
     if(State == true){
             if (FlippedCards == 0) {
@@ -90,6 +91,7 @@ function DisplayCard(element){
         }
     }
 }
+
 function FindMatch(FirstCard,SecondCard){
     if(document.getElementById(FirstCard.id).getAttribute("data-value") == document.getElementById(SecondCard.id).getAttribute("data-value")){
        //change background & disable click on element
@@ -148,15 +150,15 @@ function ResetCards(FirstCard,SecondCard ){
             ScoreMult = ScoreMult - 0.05;
         }
     }
-    
 }
+
 function sleep(time){
     State = false
     return new Promise((resolve) => setTimeout(resolve, time));
 }
+
 function buildHighscores(){
-    //var nodes = HighscoreListElement.childNodes, i = 0;
-    //nodes = Array.prototype.slice.call(nodes).sort(function(a, b){});;
+    
     var nodes = highscoreList, i = 0;
     
     while(i < nodes.length) {
@@ -192,9 +194,8 @@ function WinGame(){
         //localStorage.setItem('highscoresList', JSON.stringify(dropa))
     //}  
     RebuildHighscores();
-    
-    
 }
+
 function RebuildHighscores(){
     //kanei clear olo to list
     HighscoreListElement.innerHTML = "";
@@ -239,14 +240,3 @@ function RebuildHighscores(){
         x.style.fontSize = "27px";
     }
 }
-
-
-
-
-
-
-
-//var HighscoreNode = document.createElement("Div");
-    //var HighscoreTxt = document.createTextNode(highscoreList[(highscoreList.length-1)].PlayerName + " - " + highscoreList[(highscoreList.length-1)].GameScore);
-    //HighscoreNode.appendChild(HighscoreTxt);
-    //HighscoreListElement.appendChild(HighscoreNode);
