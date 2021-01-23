@@ -9,4 +9,6 @@ Playing the game
   <li>You receive a score depending on how many turns it took you to find all the pairs.</li>
 </ul>
 
+You can restart the game by clicking 'reset' in the left column.  
+
 The highscores list is saved locally on your webbrowser using localstorage.  
