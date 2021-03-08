@@ -4,13 +4,17 @@ var FirstCardIMG = null;
 var SecondCard = null;
 var SecondCardIMG = null;
 var FlippedCards = 0;
+
+// Deck 
+var selectedDeck = "Funny"; // Default
+
 // Gamestate, true = play , false = wait
 var State=true;
 var cardlist = null;
+
 //counter for win condition
 var TotalMatches = 0;
-//sound Vars
-//var ErrorSound = new Audio('error.mp3');
+
 // Score Vars adas
 var HighscoreListElement = null;
 var highscoreList = [];
@@ -29,8 +33,29 @@ window.onload = function() {
     TotalTriesElement = document.getElementById("Tries");
     GameScoreElement = document.getElementById("Score");
     HighscoreListElement = document.getElementById("highscore-list");
+    initCards();
+    RebuildHighscores(); 
+}
+
+
+function initCards(){
+    for(var i = 1 ; i <= 10; i++){ // generate 10 pairs
+        for (var j = 1; j<=2;j++){ // generate 2 cards per pair
+            
+            var card = document.createElement('div');
+                card.id = i+""+j;
+                card.setAttribute("onclick", "DisplayCard(this)");
+                card.className="gamecard";
+                card.setAttribute("data-value",i);
+                var img = document.createElement('img');
+                    img.className="cardimg";
+                    // img.setAttribute("src","Decks/Funny/image"+i+".jpg"); // see below
+                    img.setAttribute("style","background-image: url('Decks/"+selectedDeck+"/image"+i+".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
+                card.append(img);
+                cardlist.appendChild(card);
+        }
+    }
     RandomizeCards();
-    RebuildHighscores();
 }
 
 function RandomizeCards(){
@@ -47,6 +72,8 @@ function RandomizeCards(){
     TotalMatches = 0;
     State = true;
 
+
+    //randomizes cards
     var nodes = cardlist.childNodes, i = 0;
     nodes = Array.prototype.slice.call(nodes).sort(function(a, b){return 0.5 - Math.random()});
     
@@ -58,7 +85,12 @@ function RandomizeCards(){
         x.firstElementChild.style.opacity = "0";
        ++i;
     }
-    
+}
+
+function changeDeck( deckname ){
+    cardlist.innerHTML = "";
+    this.selectedDeck = deckname;
+    initCards();
 }
 
 function DisplayCard(element){
@@ -130,9 +162,8 @@ function FindMatch(FirstCard,SecondCard){
         });
     }
 }
+
 function ResetCards(FirstCard,SecondCard ){
-    //thelei cut to sound giati exei 1 sec keno
-    //ErrorSound.play();
     SecondCard.style.borderColor = "burlywood";
     FirstCard.style.borderColor = "burlywood";
     FirstCardIMG.style.opacity = "0"
@@ -172,6 +203,7 @@ function buildHighscores(){
     var x = document.getElementById("highscorelist").firstElementChild;
     x.style.fontWeight = "bold";
 }
+
 function WinGame(){
     //check gia an benei highscore kai gia cancel click
     var PlayerName = prompt("You win! What's your name ?");
