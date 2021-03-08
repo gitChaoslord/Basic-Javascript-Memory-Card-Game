@@ -1,14 +1,14 @@
-A basic HTML/CSS/JS memory card game i created using funny mixed animal pictures as practise during an introductory course.  
+### <p align="center"><strong>Memory Card Game</strong></p> 
+<p align="center"><a  href="https://gitchaoslord.github.io/Basic-Javascript-Memory-Card-Game" target="_blank">Click to play </a></p>
+</br>
 
-See it in action here - https://gitchaoslord.github.io/Basic-Javascript-Memory-Card-Game/  
+<p align="center"><strong>Instructions</strong></p> 
 
-Playing the game  
-<ul>
-  <li>Start the game with 10 pairs of cards face down.</li>
-  <li>You have to find all pairs by checking 2 cards per turn.</li>
-  <li>You receive a score depending on how many turns it took you to find all the pairs.</li>
-</ul>
+<p align="center"> * Start the game with 10 pairs of cards face down. </p>
+<p align="center"> * You have to find all pairs by checking 2 cards per turn. </p>
+</br>
 
-You can restart the game by clicking 'reset' in the left column.  
-
-The highscores list is saved locally on your webbrowser using localstorage.  
+<p align="center"> <strong>Features</strong> </p> 
+<p align="center"> * Basic score system and highscore saving in local-storage> </p>
+<p align="center"> * Restart game without refreshing the page </p>
+<p align="center"> * Two Card decks - Funny Animals and League of Legends </p>
