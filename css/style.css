@@ -3,11 +3,15 @@ body {
     padding:0px;
 }
 
+.theme{
+    /* background-color: brown; */
+    height:100vh;
+}
+
 .gamecardgrid{
    Display: grid;
    margin:0px;
    height:93vh;
-   background-color: beige; 
    grid-template-columns: auto auto auto auto;
    grid-column-gap: 5px;
    grid-row-gap:15px;
