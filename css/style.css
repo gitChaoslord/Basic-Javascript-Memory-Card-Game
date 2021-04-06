@@ -8,46 +8,47 @@ body {
    margin:0px;
    height:93vh;
    background-color: beige; 
-
    grid-template-columns: auto auto auto auto;
-   /* grid-template-rows:10vw 10vw 10vw 10vw 10vw; */
    grid-column-gap: 5px;
    grid-row-gap:15px;
-
    justify-items: center;
-   
    padding-top:15px;
    padding-bottom:15px; 
 }
 
-.gamecard {
+.gamecard{
     width: 10vh;
     height:15vh;
-    
-    background: brown;
-    border:solid burlywood 3px; 
+    /* border:solid burlywood 3px;  */
     border-radius:7px;
-    overflow:hidden;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .7s ;
 }
-.gamecard:hover {
-    /* opacity: 80%;  */
-    /* needs fixing */
+
+.gamecard:hover{
+    transform: scale(1.20);
+    transition: rotate(.2s);
+    box-shadow: 3px 3px 3px rgba(0,0,0,.4);
+}
+.gamecard:active{
+    transform: scale(1.20);
+    transition: rotate(.2s);
+}
+
+.gamecard.flip {
+    transform: rotateY(180deg);
+}
+
+.cardimg,
+.cardbg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+    backface-visibility: hidden;
 }
 
 .cardimg{
-    width:100%;
-    height:100%;
-    opacity:100%;
-}
-
-
-.gameinfo {
-    /* border:solid 1px black; */
-    background-color: beige;
-    text-align: center;
-}
-.ScoreScreen {
-    /* border:solid 1px black; */
-    background-color: beige;
-    text-align:center;
+    transform: rotateY(180deg);
 }
