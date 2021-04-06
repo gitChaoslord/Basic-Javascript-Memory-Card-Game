@@ -8,6 +8,12 @@ body {
     height:100vh;
 }
 
+.gamestats{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+}
+
 .gamecardgrid{
    Display: grid;
    margin:0px;
@@ -16,12 +22,11 @@ body {
    grid-column-gap: 5px;
    grid-row-gap:15px;
    justify-items: center;
-   padding-top:15px;
-   padding-bottom:15px; 
+   padding:0 5rem 5rem 5rem; 
 }
 
 .gamecard{
-    width: 10vh;
+    width: 10vh; 
     height:15vh;
     /* border:solid burlywood 3px;  */
     border-radius:7px;
