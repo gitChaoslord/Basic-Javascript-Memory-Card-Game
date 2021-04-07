@@ -41,7 +41,8 @@
                         </li>
                     </ul>
                 </li>  -->
-                <li><button class="btn btn-outline-secondary my-2 my-sm-0" onclick="RandomizeCards()">Restart</button></li> 
+                <!-- <li><button class="btn btn-outline-secondary my-2 my-sm-0" onclick="RandomizeCards()">Restart</button></li>  -->
+                <li><button class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#restartConfirmModal">Restart</button></li>
                 <li><button class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#highscoresModal">Highscores</button></li>
                 <li><button class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#selectDeckModal">Select Deck</button></li>
                <li> <a href="https://gitchaoslord.github.io" target="_blank" rel="noopener noreferrer">By John Kotronakis</a></li>  
@@ -109,7 +110,25 @@
             </div>
         </div>
 
-        
+        <!-- Restart Confirm Modal -->
+        <div class="modal fade" id="restartConfirmModal" tabindex="-1" aria-labelledby="restartConfirmModal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content confirmation-modal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="restartConfirmModal">Are you sure you want to Restart?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <button type="button" class="btn btn-danger my-2 my-sm-0"  data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                        <button class="btn btn-success my-2 my-sm-0" data-bs-dismiss="modal"  onclick="RandomizeCards()">Restart</button>
+                    </div>
+                    <!-- <div class="modal-footer"> -->
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
 
 
 

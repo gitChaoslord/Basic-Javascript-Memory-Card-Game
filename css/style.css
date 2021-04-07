@@ -113,13 +113,14 @@ body{
     background: rgba(0, 0, 0, 0.055);
 }
 
-.modal-dialog{
-    height:80%;
-}
 
-.modal-content {
-    height: 100%; /* = 100% of the .modal-dialog block */
-  }
+/* .modal-dialog{
+    height:80%;
+} */
+
+/* .modal-content {
+    height: 100%;
+  } */
 
 .deck-container{
     margin-top:1rem;

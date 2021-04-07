@@ -21,15 +21,12 @@ var GameScore = 0;
 var TotalTriesElement = null;
 var GameScoreElement = null;
 
+var sidebar = null;
 var init = 1; 
 
 //Some elements do not exist until the page has finished loading
 window.onload = function() {
-    // sidebar = document.getElementById('sidebar');
-    // button = document.getElementById('toggle');
-    // button.addEventListener('click', _ => {
-        // sidebar.classList.toggle('collapsed');
-    //   });
+    sidebar = document.getElementById("sidebar");
     cardlist = document.getElementById("CardList");
     TotalTriesElement = document.getElementById("Tries");
     GameScoreElement = document.getElementById("Score");
@@ -81,7 +78,6 @@ function RandomizeCards(){
     while(i < nodes.length) {
     cardlist.appendChild(nodes[i]);
         var x = document.getElementById("CardList").lastElementChild;
-        // x.style.borderColor = "burlywood";
         x.classList.remove('flip'); // remove flip class, used when user resets game and not on initilization of the game
         x.style.pointerEvents = 'auto';
        ++i;
@@ -89,17 +85,16 @@ function RandomizeCards(){
 }
 
 function changeDeck( deckname ){
-    //add popup to confirm choice before changing
     cardlist.innerHTML = "";
     this.selectedDeck = deckname;
     initCards();
+    // toggleSidemenu(); // maybe close when on phone only or find a different solution like present a button
 }
 
 function DisplayCard(element){
     if(State == true){
             if (FlippedCards == 0) {
                 FirstCard = document.getElementById(element.id)
-                // FirstCard.style.borderColor = "blue"
                 FlippedCards++
                 TotalTries++
                 TotalTriesElement.innerHTML = "Tries: " + TotalTries;
@@ -108,7 +103,6 @@ function DisplayCard(element){
                 
             } else if (FlippedCards == 1) {
                 SecondCard = document.getElementById(element.id)
-                // SecondCard.style.borderColor = "blue"
                 SecondCard.classList.add('flip');
                 FindMatch(FirstCard,SecondCard)
         }
@@ -119,9 +113,7 @@ function DisplayCard(element){
 function FindMatch(FirstCard,SecondCard){
     if(document.getElementById(FirstCard.id).getAttribute("data-value") == document.getElementById(SecondCard.id).getAttribute("data-value")){
        //change background & disable click on element
-        // SecondCard.style.borderColor = "Green";
         document.getElementById(SecondCard.id).style.pointerEvents = 'none';
-        // FirstCard.style.borderColor = "Green";
         document.getElementById(FirstCard.id).style.pointerEvents = 'none';
         //clear turn values
         SecondCard = null;
@@ -146,8 +138,6 @@ function FindMatch(FirstCard,SecondCard){
 }
 
 function ResetCards(FirstCard,SecondCard){
-    // SecondCard.style.borderColor = "burlywood";
-    // FirstCard.style.borderColor = "burlywood";
     FirstCard.classList.remove('flip');
     SecondCard.classList.remove('flip');
     //prevent bug clicking same card again
@@ -242,13 +232,12 @@ function RebuildHighscores(){
 }
 
 function toggleSidemenu(){
-    var x = document.getElementById("sidebar");
-    if(x.style.width == "250px"){
-        x.style.width = "0px";
+    if(sidebar.style.width == "250px"){
+        sidebar.style.width = "0px";
     }
     else
     {
-        x.style.width = "250px";
+        sidebar.style.width = "250px";
     }
 }
 
