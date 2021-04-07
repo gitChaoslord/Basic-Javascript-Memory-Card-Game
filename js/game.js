@@ -25,6 +25,11 @@ var init = 1;
 
 //Some elements do not exist until the page has finished loading
 window.onload = function() {
+    // sidebar = document.getElementById('sidebar');
+    // button = document.getElementById('toggle');
+    // button.addEventListener('click', _ => {
+        // sidebar.classList.toggle('collapsed');
+    //   });
     cardlist = document.getElementById("CardList");
     TotalTriesElement = document.getElementById("Tries");
     GameScoreElement = document.getElementById("Score");
@@ -61,11 +66,11 @@ function RandomizeCards(){
     SecondCard = null;
     FlippedCards = 0;
     TotalTries = 0;
-    TotalTriesElement.innerHTML = "Tries : " + TotalTries;
+    TotalTriesElement.innerHTML = "Tries: " + TotalTries;
     FailedTries = 0;
     ScoreMult = 1;
     GameScore = 0;
-    GameScoreElement.innerHTML = "Score : " + GameScore;
+    GameScoreElement.innerHTML = "Score: " + GameScore;
     TotalMatches = 0;
     State = true;
 
@@ -97,7 +102,7 @@ function DisplayCard(element){
                 // FirstCard.style.borderColor = "blue"
                 FlippedCards++
                 TotalTries++
-                TotalTriesElement.innerHTML = "Tries : " + TotalTries;
+                TotalTriesElement.innerHTML = "Tries: " + TotalTries;
                 FirstCard.classList.add('flip');
                 document.getElementById(FirstCard.id).style.pointerEvents = 'none';
                 
@@ -124,7 +129,7 @@ function FindMatch(FirstCard,SecondCard){
         FlippedCards = 0;
         TotalMatches++;
         GameScore = Math.round(GameScore + (100 * ScoreMult));
-        GameScoreElement.innerHTML = "Score :" + GameScore;
+        GameScoreElement.innerHTML = "Score:" + GameScore;
         if( TotalMatches == 10){
             sleep(500).then(() => {
                 WinGame();                   
@@ -235,3 +240,16 @@ function RebuildHighscores(){
         x.style.fontSize = "27px";
     }
 }
+
+function toggleSidemenu(){
+    var x = document.getElementById("sidebar");
+    if(x.style.width == "250px"){
+        x.style.width = "0px";
+    }
+    else
+    {
+        x.style.width = "250px";
+    }
+}
+
+    

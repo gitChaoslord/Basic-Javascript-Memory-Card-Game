@@ -1,28 +1,43 @@
-body {
+*{
+    box-sizing: border-box;
     margin:0px;
     padding:0px;
 }
-
+body{
+    font-family: sans-serif;
+}
 .theme{
-    /* background-color: brown; */
+    background-color: rgb(210, 224, 228);
     height:100vh;
+}
+
+.header{
+    text-align: center;
+}
+
+.footer{
+    text-decoration: none;
+    text-align: center;
+    padding:1rem 2rem 1rem 1rem;
 }
 
 .gamestats{
     display:flex;
-    justify-content: center;
+    justify-content: space-evenly;
     text-align: center;
+    font-size:2rem;
 }
 
 .gamecardgrid{
    Display: grid;
    margin:0px;
-   height:93vh;
+   /* height:93vh  */
+   height:100%; 
    grid-template-columns: auto auto auto auto;
    grid-column-gap: 5px;
    grid-row-gap:15px;
    justify-items: center;
-   padding:0 5rem 5rem 5rem; 
+   padding:1rem 5rem 0rem 5rem; 
 }
 
 .gamecard{
@@ -60,4 +75,40 @@ body {
 
 .cardimg{
     transform: rotateY(180deg);
+}
+
+
+
+#sidebar {
+    height: 100%;
+    overflow:auto;
+    position: absolute;
+    /* left: 0; */
+    top: 0;
+    z-index: 1;
+    background:white;
+    width: 0%;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.5);
+}
+
+#sidebar.collapsed {
+    width: 0;
+}
+
+#sidebar ul {
+    list-style-type: none;
+}
+#sidebar ul li{
+    padding:5px 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.toggler {
+    border-radius: 50%;
+    border:none;
+    outline:none;
+    width: 35px;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.055);
 }
