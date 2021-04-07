@@ -113,11 +113,11 @@ body{
     background: rgba(0, 0, 0, 0.055);
 }
 
-.theme-modal-dialog{
+.deck-modal-dialog{
     height:80%;
 }
 
-.theme-modal-content{
+.deck-modal-content{
     height:100%;
 }
 
