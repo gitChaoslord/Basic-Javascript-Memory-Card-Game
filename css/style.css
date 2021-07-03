@@ -8,17 +8,7 @@ body{
 }
 .theme{
     background-color: rgb(210, 224, 228);
-    height:100vh;
-}
 
-.header{
-    text-align: center;
-}
-
-.footer{
-    text-decoration: none;
-    text-align: center;
-    padding:1rem 2rem 1rem 1rem;
 }
 
 .gamestats{
@@ -121,13 +111,6 @@ body{
     height:100%;
 }
 
-/* .modal-dialog{
-    height:80%;
-} */
-
-/* .modal-content {
-    height: 100%;
-  } */
 
 .deck-container{
     margin-top:1rem;

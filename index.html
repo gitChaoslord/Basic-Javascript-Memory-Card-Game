@@ -15,24 +15,97 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
-<body class="theme">
+<body class="min-vh-100 theme">
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 id="offcanvasRightLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body d-flex flex-column flex-shrink-0 p-3 text-white">
+            <ul class="nav nav-pills flex-column mb-auto">
+
+                <li class="pb-2">
+
+                    <div class="card">
+                        <div class="card-header bg-dark text-center h4">
+                            Select Deck
+                        </div>
+
+                        <div class="card-body p-0">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                        onclick="changeDeck('funny')"></button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-sm btn-primary"
+                                        onclick="changeDeck('lol')"></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </li>
+                <li class="pb-2">
 
 
-    <button class="toggler" onclick="toggleSidemenu()">&#9776;</button>
-    <div id="sidebar">
-        <button class="toggler" onclick="toggleSidemenu()">&#9776;</button>
-        <ul>
-            <li>Memory Card Game</li>
-            <li><button class="btn btn-outline-secondary" data-bs-toggle="modal"
-                    data-bs-target="#restartConfirmModal">Restart</button></li>
-            <li><button class="btn btn-outline-secondary" data-bs-toggle="modal"
-                    data-bs-target="#highscoresModal">Highscores</button></li>
-            <li><button class="btn btn-outline-secondary" data-bs-toggle="modal"
-                    data-bs-target="#selectDeckModal">Select Deck</button></li>
-            <li> <a href="https://gitchaoslord.github.io" target="_blank" rel="noopener noreferrer">By John
-                    Kotronakis</a></li>
-        </ul>
+                    <div class="card">
+                        <div class="card-header bg-dark text-center h4">
+                            Highscores
+                        </div>
+
+                        <div class="card-body p-0">
+
+                            <ul class="list-group list-group-flush" id="highscore-list">
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                </li>
+                <li>
+                    <button class="btn btn-warning  w-100 text-center" type="button" onclick="RandomizeCards()">
+                        <span class="h4">Restart</span>
+                    </button>
+                </li>
+            </ul>
+
+
+            <a href="https://gitchaoslord.github.io" target="_blank" rel="noopener noreferrer"
+                class="w-100 text-center h4">
+                By John Kotronakis
+            </a>
+
+
+
+        </div>
     </div>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Memory card game</a>
+
+
+            <form class="d-flex">
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <i class="bi bi-list"></i>
+                </button>
+
+            </form>
+
+        </div>
+    </nav>
+
 
 
     <section class="container">
@@ -47,67 +120,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Highscore Modal -->
-    <div class="modal fade" id="highscoresModal" tabindex="-1" aria-labelledby="highscoresModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="highscoresModal">Highscores</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id='highscore-list'>
-                    ...
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Theme Selection Modal -->
-    <div class="modal fade" id="selectDeckModal" tabindex="-1" aria-labelledby="selectDeckModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg deck-modal-dialog">
-            <div class="modal-content deck-modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="selectDeckModal">Select Deck</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="deck-container p-2">
-                        <div class="deck-card">
-                            <div class="deck-img" style="background-image: url('Decks/Funny/image1.jpg');"
-                                onclick="changeDeck('Funny')"></div>
-                            <div class="deck-title">Mixed Animals</div>
-                        </div>
-                        <div class="deck-card">
-                            <div class="deck-img" style="background-image: url('Decks/Lol/image1.jpg');"
-                                onclick="changeDeck('LoL')"></div>
-                            <div class="deck-title">League of Legends</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Restart Confirm Modal -->
-    <div class="modal fade" id="restartConfirmModal" tabindex="-1" aria-labelledby="restartConfirmModal"
-        aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content confirmation-modal">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="restartConfirmModal">Are you sure you want to Restart?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex justify-content-between">
-                    <button type="button" class="btn btn-danger my-2 my-sm-0" data-bs-dismiss="modal"
-                        aria-label="Close">Cancel</button>
-                    <button class="btn btn-success my-2 my-sm-0" data-bs-dismiss="modal"
-                        onclick="RandomizeCards()">Yes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
 

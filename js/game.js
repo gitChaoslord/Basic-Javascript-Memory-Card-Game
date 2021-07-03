@@ -166,7 +166,7 @@ function buildHighscores() {
 
     while (i < nodes.length) {
         HighscoreListElement.appendChild(nodes[i]);
-        //isws einai perito na to kanw kol giati to highscore table de tha ginete rebuild otan patiete reset button, ara one time on load
+        // TODO: isws einai perito na to kanw kol giati to highscore table de tha ginete rebuild otan patiete reset button, ara one time on load
         //maybe an thelw na allazei dunamika o pinakas an briskete neo highscore meta apo game
         var y = document.getElementById("highscorelist").lastElementChild
         y.style.fontWeight = "normal";
@@ -177,21 +177,16 @@ function buildHighscores() {
 }
 
 function WinGame() {
-    //check gia an benei highscore kai gia cancel click
+    // TODO: make a modal for information input
     var PlayerName = prompt("You win! What's your name ?");
     highscoreList.push({ GameScore, PlayerName });
-    // highscoreList.sort(function(a,b){return a.GameScore < b.GameScore});
-    //highscoreList.splice(4); 
-    //nomizw thelei check gia na vlepei an uparxei eidh, allios kanei reset sto refresh
     localStorage.setItem('highscoresList', JSON.stringify(highscoreList))
     RebuildHighscores();
 }
 
 function RebuildHighscores() {
     HighscoreListElement.innerHTML = ""; // Clears Highscore list
-    //kai meta rebuild olo to list
-    //HighScores = JSON.parse(localStorage.getItem('highscoresList')) || [];
-    //aallakse se var apo const prin to kleisw
+
     if (init == 1) {
         var HighScores = JSON.parse(localStorage.getItem('highscoresList')) || [];
         HighScores.map(HighScore => {
@@ -205,39 +200,19 @@ function RebuildHighscores() {
     highscoreList.splice(4);
 
     for (var i = 0; i < highscoreList.length; i++) {
-        var HighscoreNode = document.createElement("Div");
+        var HighscoreNode = document.createElement("li");
+        // <li class="list-group-item">An item</li>
         var HighscoreTxt = document.createTextNode(highscoreList[i].PlayerName + " - " + highscoreList[i].GameScore);
         HighscoreNode.appendChild(HighscoreTxt);
+        HighscoreNode.className = 'list-group-item';
         HighscoreListElement.appendChild(HighscoreNode);
     }
 
-    //var HighScores = JSON.parse(localStorage.getItem('highscoresList')) || [];
-    // HighScores.map(HighScore => {
-    //     var HighscoreNode = document.createElement("Div");
-    //     var HighscoreTxt = document.createTextNode(HighScore.PlayerName + " - " + HighScore.GameScore);
-    //     //--------
-    //     highscoreList.push(HighScore)
-    //     highscoreList.sort(function(a,b){return a.GameScore < b.GameScore});
-    //     highscoreList.splice(4); 
-    //     
-    //     HighscoreNode.appendChild(HighscoreTxt);
-    //     HighscoreListElement.appendChild(HighscoreNode);
-    // })
-    //bgazei kapoio error otan kaleite prwth fora h rebuildhighscores giati einai adio to table, fix it later
+    // TODO: do it with css
     if (highscoreList.length >= 1) {
         var x = document.getElementById("highscore-list").firstElementChild;
         x.style.fontWeight = "bold";
         x.style.fontSize = "27px";
     }
 }
-
-function toggleSidemenu() {
-    if (sidebar.style.width == "250px") {
-        sidebar.style.width = "0px";
-    }
-    else {
-        sidebar.style.width = "250px";
-    }
-}
-
 
