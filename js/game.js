@@ -22,33 +22,33 @@ var TotalTriesElement = null;
 var GameScoreElement = null;
 
 var sidebar = null;
-var init = 1; 
+var init = 1;
 
 //Some elements do not exist until the page has finished loading
-window.onload = function() {
+window.onload = function () {
     sidebar = document.getElementById("sidebar");
     cardlist = document.getElementById("CardList");
     TotalTriesElement = document.getElementById("Tries");
     GameScoreElement = document.getElementById("Score");
     HighscoreListElement = document.getElementById("highscore-list");
     initCards();
-    RebuildHighscores(); 
+    RebuildHighscores();
 }
 
 function initCards() {
     for (var i = 1; i <= 10; i++) { // generate 10 pairs
         for (var j = 1; j <= 2; j++) { // generate 2 cards per pair
             var card = document.createElement('div'); // create Card
-                card.id = i + "" + j;
-                card.setAttribute("onclick", "DisplayCard(this)");
-                card.className = "gamecard";
-                card.setAttribute("data-value", i);
+            card.id = i + "" + j;
+            card.setAttribute("onclick", "DisplayCard(this)");
+            card.className = "gamecard";
+            card.setAttribute("data-value", i);
             var cardImg = document.createElement('div'); // add card image
-                cardImg.className = "cardimg";
-                cardImg.setAttribute("style", "background-image: url('Decks/" + selectedDeck + "/image" + i + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
+            cardImg.className = "cardimg";
+            cardImg.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/image" + i + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
             var cardBG = document.createElement('div'); // add card background
-                cardBG.className = "cardbg";
-                cardBG.setAttribute("style", "background-image: url('Decks/" + selectedDeck + "/background" + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
+            cardBG.className = "cardbg";
+            cardBG.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/background" + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
             card.append(cardImg);
             card.append(cardBG);
             cardlist.appendChild(card);
@@ -57,7 +57,7 @@ function initCards() {
     RandomizeCards();
 }
 
-function RandomizeCards(){
+function RandomizeCards() {
     // re-initiliaze game aka reset button is pressed
     FirstCard = null;
     SecondCard = null;
@@ -73,46 +73,46 @@ function RandomizeCards(){
 
     //randomizes cards
     var nodes = cardlist.childNodes, i = 0;
-    nodes = Array.prototype.slice.call(nodes).sort(function(a, b){return 0.5 - Math.random()});
-    
-    while(i < nodes.length) {
-    cardlist.appendChild(nodes[i]);
+    nodes = Array.prototype.slice.call(nodes).sort(function (a, b) { return 0.5 - Math.random() });
+
+    while (i < nodes.length) {
+        cardlist.appendChild(nodes[i]);
         var x = document.getElementById("CardList").lastElementChild;
         x.classList.remove('flip'); // remove flip class, used when user resets game and not on initilization of the game
         x.style.pointerEvents = 'auto';
-       ++i;
+        ++i;
     }
 }
 
-function changeDeck( deckname ){
+function changeDeck(deckname) {
     cardlist.innerHTML = "";
     this.selectedDeck = deckname;
     initCards();
     // toggleSidemenu(); // maybe close when on phone only or find a different solution like present a button
 }
 
-function DisplayCard(element){
-    if(State == true){
-            if (FlippedCards == 0) {
-                FirstCard = document.getElementById(element.id)
-                FlippedCards++
-                TotalTries++
-                TotalTriesElement.innerHTML = "Tries: " + TotalTries;
-                FirstCard.classList.add('flip');
-                document.getElementById(FirstCard.id).style.pointerEvents = 'none';
-                
-            } else if (FlippedCards == 1) {
-                SecondCard = document.getElementById(element.id)
-                SecondCard.classList.add('flip');
-                FindMatch(FirstCard,SecondCard)
+function DisplayCard(element) {
+    if (State == true) {
+        if (FlippedCards == 0) {
+            FirstCard = document.getElementById(element.id)
+            FlippedCards++
+            TotalTries++
+            TotalTriesElement.innerHTML = "Tries: " + TotalTries;
+            FirstCard.classList.add('flip');
+            document.getElementById(FirstCard.id).style.pointerEvents = 'none';
+
+        } else if (FlippedCards == 1) {
+            SecondCard = document.getElementById(element.id)
+            SecondCard.classList.add('flip');
+            FindMatch(FirstCard, SecondCard)
         }
     }
 }
 
 
-function FindMatch(FirstCard,SecondCard){
-    if(document.getElementById(FirstCard.id).getAttribute("data-value") == document.getElementById(SecondCard.id).getAttribute("data-value")){
-       //change background & disable click on element
+function FindMatch(FirstCard, SecondCard) {
+    if (document.getElementById(FirstCard.id).getAttribute("data-value") == document.getElementById(SecondCard.id).getAttribute("data-value")) {
+        //change background & disable click on element
         document.getElementById(SecondCard.id).style.pointerEvents = 'none';
         document.getElementById(FirstCard.id).style.pointerEvents = 'none';
         //clear turn values
@@ -122,22 +122,22 @@ function FindMatch(FirstCard,SecondCard){
         TotalMatches++;
         GameScore = Math.round(GameScore + (100 * ScoreMult));
         GameScoreElement.innerHTML = "Score:" + GameScore;
-        if( TotalMatches == 10){
+        if (TotalMatches == 10) {
             sleep(500).then(() => {
-                WinGame();                   
+                WinGame();
             });
         }
     }
-    else{
+    else {
         sleep(800).then(() => {
-        ResetCards(FirstCard,SecondCard);
-        FlippedCards = 0;
-        State = true;
+            ResetCards(FirstCard, SecondCard);
+            FlippedCards = 0;
+            State = true;
         });
     }
 }
 
-function ResetCards(FirstCard,SecondCard){
+function ResetCards(FirstCard, SecondCard) {
     FirstCard.classList.remove('flip');
     SecondCard.classList.remove('flip');
     //prevent bug clicking same card again
@@ -146,40 +146,40 @@ function ResetCards(FirstCard,SecondCard){
     SecondCard = null;
     FirstCard = null;
     FailedTries++
-    if(FailedTries >= 5){
-        if(ScoreMult > 0.5){
+    if (FailedTries >= 5) {
+        if (ScoreMult > 0.5) {
             ScoreMult = ScoreMult - 0.1;
-        }else if (ScoreMult > 0.1){
+        } else if (ScoreMult > 0.1) {
             ScoreMult = ScoreMult - 0.05;
         }
     }
 }
 
-function sleep(time){
+function sleep(time) {
     State = false
     return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-function buildHighscores(){
-    
+function buildHighscores() {
+
     var nodes = highscoreList, i = 0;
-    
-    while(i < nodes.length) {
+
+    while (i < nodes.length) {
         HighscoreListElement.appendChild(nodes[i]);
         //isws einai perito na to kanw kol giati to highscore table de tha ginete rebuild otan patiete reset button, ara one time on load
         //maybe an thelw na allazei dunamika o pinakas an briskete neo highscore meta apo game
         var y = document.getElementById("highscorelist").lastElementChild
-            y.style.fontWeight = "normal";
-            ++i;
+        y.style.fontWeight = "normal";
+        ++i;
     }
     var x = document.getElementById("highscorelist").firstElementChild;
     x.style.fontWeight = "bold";
 }
 
-function WinGame(){
+function WinGame() {
     //check gia an benei highscore kai gia cancel click
     var PlayerName = prompt("You win! What's your name ?");
-    highscoreList.push({GameScore,PlayerName});
+    highscoreList.push({ GameScore, PlayerName });
     // highscoreList.sort(function(a,b){return a.GameScore < b.GameScore});
     //highscoreList.splice(4); 
     //nomizw thelei check gia na vlepei an uparxei eidh, allios kanei reset sto refresh
@@ -187,12 +187,12 @@ function WinGame(){
     RebuildHighscores();
 }
 
-function RebuildHighscores(){
+function RebuildHighscores() {
     HighscoreListElement.innerHTML = ""; // Clears Highscore list
     //kai meta rebuild olo to list
     //HighScores = JSON.parse(localStorage.getItem('highscoresList')) || [];
     //aallakse se var apo const prin to kleisw
-    if(init == 1){ 
+    if (init == 1) {
         var HighScores = JSON.parse(localStorage.getItem('highscoresList')) || [];
         HighScores.map(HighScore => {
             highscoreList.push(HighScore)
@@ -200,45 +200,44 @@ function RebuildHighscores(){
         init = 0;
     }
 
-    highscoreList.sort(function(a,b){return a.GameScore - b.GameScore});
-    highscoreList.reverse(); 
-    highscoreList.splice(4); 
+    highscoreList.sort(function (a, b) { return a.GameScore - b.GameScore });
+    highscoreList.reverse();
+    highscoreList.splice(4);
 
-    for(var i = 0 ; i < highscoreList.length; i++){
+    for (var i = 0; i < highscoreList.length; i++) {
         var HighscoreNode = document.createElement("Div");
         var HighscoreTxt = document.createTextNode(highscoreList[i].PlayerName + " - " + highscoreList[i].GameScore);
         HighscoreNode.appendChild(HighscoreTxt);
         HighscoreListElement.appendChild(HighscoreNode);
     }
-    
+
     //var HighScores = JSON.parse(localStorage.getItem('highscoresList')) || [];
-   // HighScores.map(HighScore => {
-   //     var HighscoreNode = document.createElement("Div");
-   //     var HighscoreTxt = document.createTextNode(HighScore.PlayerName + " - " + HighScore.GameScore);
-   //     //--------
-   //     highscoreList.push(HighScore)
-   //     highscoreList.sort(function(a,b){return a.GameScore < b.GameScore});
-   //     highscoreList.splice(4); 
-   //     
-   //     HighscoreNode.appendChild(HighscoreTxt);
-   //     HighscoreListElement.appendChild(HighscoreNode);
-   // })
+    // HighScores.map(HighScore => {
+    //     var HighscoreNode = document.createElement("Div");
+    //     var HighscoreTxt = document.createTextNode(HighScore.PlayerName + " - " + HighScore.GameScore);
+    //     //--------
+    //     highscoreList.push(HighScore)
+    //     highscoreList.sort(function(a,b){return a.GameScore < b.GameScore});
+    //     highscoreList.splice(4); 
+    //     
+    //     HighscoreNode.appendChild(HighscoreTxt);
+    //     HighscoreListElement.appendChild(HighscoreNode);
+    // })
     //bgazei kapoio error otan kaleite prwth fora h rebuildhighscores giati einai adio to table, fix it later
-    if(highscoreList.length >=1 ){
+    if (highscoreList.length >= 1) {
         var x = document.getElementById("highscore-list").firstElementChild;
         x.style.fontWeight = "bold";
         x.style.fontSize = "27px";
     }
 }
 
-function toggleSidemenu(){
-    if(sidebar.style.width == "250px"){
+function toggleSidemenu() {
+    if (sidebar.style.width == "250px") {
         sidebar.style.width = "0px";
     }
-    else
-    {
+    else {
         sidebar.style.width = "250px";
     }
 }
 
-    
+
