@@ -10,13 +10,6 @@ body{
     background-color: rgb(210, 224, 228);
 }
 
-.gamestats{
-    display:flex;
-    justify-content: space-evenly;
-    text-align: center;
-    font-size:2rem;
-}
-
 .gamecardgrid{
    Display: grid;
    margin:0px;

@@ -62,11 +62,11 @@ function RandomizeCards() {
     SecondCard = null;
     FlippedCards = 0;
     TotalTries = 0;
-    TotalTriesElement.innerHTML = "Tries: " + TotalTries;
+    TotalTriesElement.innerHTML = TotalTries;
     FailedTries = 0;
     ScoreMult = 1;
     GameScore = 0;
-    GameScoreElement.innerHTML = "Score: " + GameScore;
+    GameScoreElement.innerHTML = GameScore;
     TotalMatches = 0;
     State = true;
 
@@ -87,7 +87,6 @@ function changeDeck(deckname) {
     cardlist.innerHTML = "";
     this.selectedDeck = deckname;
     initCards();
-    // toggleSidemenu(); // maybe close when on phone only or find a different solution like present a button
 }
 
 function DisplayCard(element) {
@@ -96,7 +95,7 @@ function DisplayCard(element) {
             FirstCard = document.getElementById(element.id)
             FlippedCards++
             TotalTries++
-            TotalTriesElement.innerHTML = "Tries: " + TotalTries;
+            TotalTriesElement.innerHTML = TotalTries;
             FirstCard.classList.add('flip');
             document.getElementById(FirstCard.id).style.pointerEvents = 'none';
 
@@ -120,7 +119,7 @@ function FindMatch(FirstCard, SecondCard) {
         FlippedCards = 0;
         TotalMatches++;
         GameScore = Math.round(GameScore + (100 * ScoreMult));
-        GameScoreElement.innerHTML = "Score:" + GameScore;
+        GameScoreElement.innerHTML = GameScore;
         if (TotalMatches == 10) {
             sleep(500).then(() => {
                 WinGame();
