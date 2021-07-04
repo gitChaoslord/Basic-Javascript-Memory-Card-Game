@@ -5,7 +5,7 @@ var SecondCard = null;
 var SecondCardIMG = null;
 var FlippedCards = 0; //
 
-var selectedDeck = "Funny"; // Default Deck
+var selectedDeck = "funny"; // Default Deck
 var State = true; // Gamestate, true = pick a card, false = wait 
 var cardlist = null;  // Contains the parent element of all cards
 
