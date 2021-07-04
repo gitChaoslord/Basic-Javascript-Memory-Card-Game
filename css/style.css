@@ -13,36 +13,65 @@ body{
 .gamecardgrid{
    Display: grid;
    margin:0px;
-   /* height:93vh  */
    height:100%; 
    grid-template-columns: auto auto auto auto;
    grid-column-gap: 5px;
    grid-row-gap:15px;
    justify-items: center;
    padding:1rem 5rem 0rem 5rem; 
+   /* FIXME: remake at some point with bootstrap in mind */
 }
 
 .gamecard{
     width: 10vh; 
     height:15vh;
-    /* border:solid burlywood 3px;  */
+
     border-radius:7px;
-    transform: scale(1);
+
+    -webkit-transform-style: preserve-3d;
+
     transform-style: preserve-3d;
+
+    -webkit-transition: transform .7s;
+    -moz-transition:transform .7s;
+    -o-trasition: transform .7s;
+
     transition: transform .7s ;
 }
 
 .gamecard:hover{
+    -ms-transform: scale(1.20);
+    -webkit-transform: scale(1.20);
+    -moz-transform: scale(1.20);
+    -o-transform: scale(1.20);
+
     transform: scale(1.20);
+
+    -webkit-transition:rotate(.2s);
+    -moz-transition: rotate(.2s);
+    -o-transition: rotate(.2s);
+
     transition: rotate(.2s);
+
     box-shadow: 3px 3px 3px rgba(0,0,0,.4);
 }
 .gamecard:active{
+    -ms-transform: scale(1.20);
+    -webkit-transform: scale(1.20);
+    -moz-transform: scale(1.20);
+    -o-transform: scale(1.20);
+
     transform: scale(1.20);
+
     transition: rotate(.2s);
 }
 
 .gamecard.flip {
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+
     transform: rotateY(180deg);
 }
 
@@ -52,10 +81,19 @@ body{
     height: 100%;
     position: absolute;
     border-radius: 5px;
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+
     backface-visibility: hidden;
 }
 
 .cardimg{
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+
     transform: rotateY(180deg);
 }
 
@@ -65,7 +103,7 @@ ul#highscore-list li:first-child  {
 }
 
 .deck-selector {
- 
+
     border-top-left-radius: 0px;
     border-bottom-right-radius: 0px;
     border-top-right-radius: 8px;
@@ -76,5 +114,10 @@ ul#highscore-list li:first-child  {
     border:green 2px solid;
 }
 .deck-selector:active {
+    -ms-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+
     transform:scale(1.05);
 }
