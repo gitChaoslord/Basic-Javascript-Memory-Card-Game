@@ -33,22 +33,24 @@
                             Select Deck
                         </div>
 
-                        <div class="card-body p-0">
+                        <!-- TODO: add show 'currently active' deck -->
+                        <div class="card-body p-0 d-flex flex-row flex-wrap justify-content-center ">
 
-                            <div class="row">
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-sm btn-primary"
-                                        onclick="changeDeck('funny')"></button>
-                                </div>
-                                <div class="col-4">
-                                    <button type="button" class="btn btn-sm btn-primary"
-                                        onclick="changeDeck('lol')"></button>
-                                </div>
-                            </div>
+                            <button type="button" class="btn btn-default p-1" onclick="changeDeck('funny')">
+                                <img class="deck-selector" src="assets/decks/funny/image2.jpg" height="100" width="100"
+                                    alt="funny" title="funnydeck">
+                            </button>
+
+                            <button type="button" class="btn btn-default p-1" onclick="changeDeck('lol')">
+                                <img class="deck-selector" src="assets/decks/lol/image2.jpg" height="100" width="100"
+                                    alt="lol" title="loldeck">
+                            </button>
 
                         </div>
 
                     </div>
+
+
                 </li>
                 <li class="pb-2">
 
@@ -70,12 +72,11 @@
 
                 </li>
                 <li>
-                    <button class="btn btn-warning  w-100 text-center" type="button" onclick="RandomizeCards()">
+                    <button class="btn btn-dark  w-100 text-center" type="button" onclick="RandomizeCards()">
                         <span class="h4">Restart</span>
                     </button>
                 </li>
             </ul>
-
 
             <a href="https://gitchaoslord.github.io" target="_blank" rel="noopener noreferrer"
                 class="w-100 text-center h4">

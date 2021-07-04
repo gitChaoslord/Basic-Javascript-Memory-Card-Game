@@ -24,7 +24,6 @@ var GameScoreElement = null;
 var sidebar = null;
 var init = 1;
 
-//Some elements do not exist until the page has finished loading
 window.onload = function () {
     sidebar = document.getElementById("sidebar");
     cardlist = document.getElementById("CardList");
@@ -33,7 +32,7 @@ window.onload = function () {
     HighscoreListElement = document.getElementById("highscore-list");
     initCards();
     RebuildHighscores();
-}
+} // Some elements do not exist until the page has finished loading
 
 function initCards() {
     for (var i = 1; i <= 10; i++) { // generate 10 pairs
@@ -201,18 +200,12 @@ function RebuildHighscores() {
 
     for (var i = 0; i < highscoreList.length; i++) {
         var HighscoreNode = document.createElement("li");
-        // <li class="list-group-item">An item</li>
+
         var HighscoreTxt = document.createTextNode(highscoreList[i].PlayerName + " - " + highscoreList[i].GameScore);
         HighscoreNode.appendChild(HighscoreTxt);
         HighscoreNode.className = 'list-group-item';
         HighscoreListElement.appendChild(HighscoreNode);
     }
 
-    // TODO: do it with css
-    if (highscoreList.length >= 1) {
-        var x = document.getElementById("highscore-list").firstElementChild;
-        x.style.fontWeight = "bold";
-        x.style.fontSize = "27px";
-    }
 }
 

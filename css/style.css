@@ -8,7 +8,6 @@ body{
 }
 .theme{
     background-color: rgb(210, 224, 228);
-
 }
 
 .gamestats{
@@ -67,85 +66,22 @@ body{
     transform: rotateY(180deg);
 }
 
-
-
-#sidebar {
-    height: 100%;
-    overflow:auto;
-    position: absolute;
-    /* left: 0; */
-    top: 0;
-    z-index: 1;
-    background:white;
-    width: 0%;
-    box-shadow: 2px 0 4px rgba(0,0,0,0.5);
+ul#highscore-list li:first-child  {
+    font-weight: bold;
+    font-size:27px;
 }
 
-#sidebar.collapsed {
-    width: 0;
+.deck-selector {
+ 
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border:gold 2px solid;
 }
-
-#sidebar ul {
-    list-style-type: none;
+.deck-selector:hover {
+    border:green 2px solid;
 }
-#sidebar ul li{
-    padding:5px 10px;
-    width: 100%;
-    text-align: center;
-}
-
-.toggler {
-    border-radius: 50%;
-    border:none;
-    outline:none;
-    width: 35px;
-    height: 35px;
-    background: rgba(0, 0, 0, 0.055);
-}
-
-.deck-modal-dialog{
-    height:80%;
-}
-
-.deck-modal-content{
-    height:100%;
-}
-
-
-.deck-container{
-    margin-top:1rem;
-    margin-bottom:2rem;
-    /* height:50vh; */
-    display:flex;
-    justify-content:space-evenly;
-}
-
-.deck-card{
-    width:20%;
-    height:17vh;
-}
-
-.deck-card:hover{
-    transform: scale(1.20);
-    transition: rotate(.2s);
-    box-shadow: 3px 3px 3px rgba(0,0,0,.4);
-}
-
-.deck-card:active{
-    transform:scale(1.35);
-    transition: rotate(.2s);
-}
-
-.deck-img{
-    border-radius:7px;
-    background-size: 100% 100%;
-    box-shadow:2px 2px 2px rgba(0,0,0,.4);
-    width:100%;
-    height:100%;
-}
-
-.deck-title{
-    padding-top:1rem;
-    font-size:20px;
-    text-align: center;
+.deck-selector:active {
+    transform:scale(1.05);
 }
