@@ -23,6 +23,57 @@ var GameScore = 0;
 var TotalTriesElement = null;
 var GameScoreElement = null;
 
+
+let gameDeck = [];
+
+const deckLoL = [
+    {
+        card_icon: 'assets\decks\lol\image1.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image2.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image3.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image4.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image5.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image6.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image7.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image8.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image9.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image10.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+    {
+        card_icon: 'assets\decks\lol\image11.jpg',
+        card_bg: 'assets\decks\lol\background.jpg'
+    },
+]
+
+
 var init = 1;
 
 let isMobile = false;
@@ -65,66 +116,107 @@ function isMobileObs() {
 }
 
 function initCards() {
-    for (let i = 1; i <= 10; i++) { // generate 10 pairs
-        for (let j = 1; j <= 2; j++) { // generate 2 cards per pair
 
-            const col = document.createElement('div');
-            col.className = "col-3 py-2 ";
-
-            const card = document.createElement('div');
-            card.id = i + "" + j;
-            card.setAttribute("onclick", "DisplayCard(this)");
-            card.className = "gamecard shadow mx-auto"; // gamecard
-            card.setAttribute("data-value", i);
-
-
-            const cardImg = document.createElement('div');
-            // cardImg.src = "assets/decks/" + selectedDeck + "/image" + i + ".jpg"
-            cardImg.className = "card-img cardimg"; // cardimg
-            cardImg.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/image" + i + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
-
-            const cardBG = document.createElement('div'); // add card background
-            // cardImg.src = "assets/decks/" + selectedDeck + "/background" + ".jpg";
-            cardBG.className = "card-img cardbg"; // cardbg
-            cardBG.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/background" + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
-
-            card.append(cardImg);
-            card.append(cardBG);
-
-            col.append(card);
-
-            cardlist.appendChild(col);
-        }
-    }
-    RandomizeCards();
-}
-
-function RandomizeCards() {
-    // re-initiliaze game aka reset button is pressed
     FirstCard = null;
     SecondCard = null;
+
     FlippedCards = 0;
+
     TotalTries = 0;
-    TotalTriesElement.innerHTML = TotalTries;
     FailedTries = 0;
+    TotalTriesElement.innerHTML = TotalTries;
+
     ScoreMult = 1;
     GameScore = 0;
     GameScoreElement.innerHTML = GameScore;
     TotalMatches = 0;
     State = true;
 
-    //randomizes cards
-    var nodes = cardlist.childNodes, i = 0;
-    nodes = Array.prototype.slice.call(nodes).sort(function (a, b) { return 0.5 - Math.random() });
+    this.gameDeck = [];
+    cardlist.innerHTML = "";
 
-    while (i < nodes.length) {
-        cardlist.appendChild(nodes[i]);
-        var x = document.getElementById("CardList").lastElementChild;
-        x.classList.remove('flip'); // remove flip class, used when user resets game and not on initilization of the game
-        x.style.pointerEvents = 'auto';
-        ++i;
+    //TODO: add difficlty
+    for (let i = 1; i <= 10; i++) { // generate 10 pairs
+        for (let j = 1; j <= 2; j++) { // generate 2 cards per pair
+
+            let index = i + "" + j;
+
+            let card = {
+                id: index,
+                dataValue: i,
+            }
+
+            this.gameDeck.push(card);
+
+        }
     }
+
+    this.gameDeck.sort((a, b) => 0.5 - Math.random());
+
+
+    for (let item of this.gameDeck) {
+
+
+        const col = document.createElement('div');
+        col.className = "col-3 py-2 ";
+
+        const card = document.createElement('div');
+        card.id = item.id;
+
+        card.setAttribute("onclick", "DisplayCard(this)");
+        card.className = "gamecard shadow mx-auto";
+        card.setAttribute("data-value", item.dataValue);
+
+        const cardImg = document.createElement('div');
+        cardImg.className = "card-img cardimg";
+        cardImg.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/image" + item.dataValue + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
+
+        const cardBG = document.createElement('div');
+        cardBG.className = "card-img cardbg";
+        cardBG.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/background" + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
+
+        card.append(cardImg);
+        card.append(cardBG);
+
+        col.append(card);
+
+        cardlist.appendChild(col);
+    }
+
+    // RandomizeCards();
 }
+
+
+// OLD LOGIC
+// function RandomizeCards() {
+//     // re-initiliaze game aka reset button is pressed
+//     FirstCard = null;
+//     SecondCard = null;
+
+//     FlippedCards = 0;
+
+//     TotalTries = 0;
+//     FailedTries = 0;
+//     TotalTriesElement.innerHTML = TotalTries;
+
+//     ScoreMult = 1;
+//     GameScore = 0;
+//     GameScoreElement.innerHTML = GameScore;
+//     TotalMatches = 0;
+//     State = true;
+
+//     //randomizes cards
+//     var nodes = cardlist.childNodes, i = 0;
+//     nodes = Array.prototype.slice.call(nodes).sort(function (a, b) { return 0.5 - Math.random() });
+
+//     while (i < nodes.length) {
+//         cardlist.appendChild(nodes[i]);
+//         var x = document.getElementById("CardList").lastElementChild;
+//         x.classList.remove('flip'); // remove flip class, used when user resets game and not on initilization of the game
+//         // x.style.pointerEvents = 'auto'; // TODO: not sure about its purpose
+//         ++i;
+//     }
+// }
 
 function changeDeck(deckname) {
     cardlist.innerHTML = "";
