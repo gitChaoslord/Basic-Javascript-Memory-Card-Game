@@ -12,13 +12,11 @@ body{
 
 .gamecardgrid{
    Display: grid;
-   margin:0px;
-   height:100%; 
+
    grid-template-columns: auto auto auto auto;
-   grid-column-gap: 5px;
-   grid-row-gap:15px;
+   grid-column-gap: 0.5rem;
+   grid-row-gap:1.5rem;
    justify-items: center;
-   padding:1rem 5rem 0rem 5rem; 
    /* FIXME: remake at some point with bootstrap in mind */
 }
 

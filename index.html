@@ -89,7 +89,7 @@
     </div>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="navbar" class="d-none navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Memory card game</a>
 
@@ -108,21 +108,92 @@
 
 
 
-    <section class="container">
-        <div class="row h3">
-            <div class="col-6 text-center">
-                Tries:
-                <span id="Tries"></span>
+    <section class="container-fluid">
+
+        <div class="row h-100">
+
+            <div id="sidebar-left" class="col-lg-2 border-end border-primary bg-white h-100 vh-100">
+
+                <div class="pt-2 d-flex flex-column flex-shrink-0 text-white h-100">
+
+                    <ul class="nav nav-pills flex-column mb-auto">
+
+                        <li class="pb-2">
+
+                            <div class="card">
+
+                                <div class="card-header bg-dark text-center h4">
+                                    Select Deck
+                                </div>
+
+                                <!-- TODO: add show 'currently active' deck -->
+                                <div class="card-body p-0 d-flex flex-row flex-wrap justify-content-center ">
+
+                                    <button type="button" class="btn btn-default p-1" onclick="changeDeck('funny')">
+                                        <img class="deck-selector" src="assets/decks/funny/image2.jpg" height="100"
+                                            width="100" alt="funny" title="funnydeck">
+                                    </button>
+
+                                    <button type="button" class="btn btn-default p-1" onclick="changeDeck('lol')">
+                                        <img class="deck-selector" src="assets/decks/lol/image2.jpg" height="100"
+                                            width="100" alt="lol" title="loldeck">
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                        </li>
+                        <li class="pb-2">
+
+
+                            <div class="card">
+                                <div class="card-header bg-dark text-center h4">
+                                    Highscores
+                                </div>
+
+                                <div class="card-body p-0">
+
+                                    <ul class="list-group list-group-flush" id="highscore-list">
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+
+                        </li>
+                        <li>
+                            <button class="btn btn-dark  w-100 text-center" type="button" onclick="RandomizeCards()">
+                                <span class="h4">Restart</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <a href="https://gitchaoslord.github.io" target="_blank" rel="noopener noreferrer"
+                        class="w-100 text-center h4">
+                        By John Kotronakis
+                    </a>
+                </div>
+
             </div>
-            <div class="col-6 text-center">
-                Score:
-                <span id="Score"></span>
+
+            <div class="col-lg-8 col-md-12">
+
+                <div class="d-flex py-3 h3 justify-content-around">
+                    <span>Tries:
+                        <span id="Tries"></span></span>
+                    <span>Score:
+                        <span id="Score"></span></span>
+                </div>
+
+                <div class="gamecardgrid pb-3" id="CardList"></div>
+
             </div>
+
         </div>
-        <div class="row">
-            <div class="col-lg-12 gamecardgrid" id="CardList">
-            </div>
-        </div>
+
     </section>
 
 

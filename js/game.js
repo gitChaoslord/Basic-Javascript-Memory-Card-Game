@@ -13,26 +13,56 @@ var TotalMatches = 0; // Counter for win condition
 
 // Score Variables
 var HighscoreListElement = null;
+
 var highscoreList = [];
 var TotalTries = 0;
 var FailedTries = 0;
 var ScoreMult = 1;
 var GameScore = 0;
+
 var TotalTriesElement = null;
 var GameScoreElement = null;
 
-var sidebar = null;
 var init = 1;
 
+let isMobile = false;
+var sidebar = null;
+var navbar = null;
+
 window.onload = function () {
-    sidebar = document.getElementById("sidebar");
     cardlist = document.getElementById("CardList");
     TotalTriesElement = document.getElementById("Tries");
     GameScoreElement = document.getElementById("Score");
     HighscoreListElement = document.getElementById("highscore-list");
+    sidebar = document.getElementById("sidebar-left");
+    navbar = document.getElementById("navbar");
+
     initCards();
     RebuildHighscores();
-} // Some elements do not exist until the page has finished loading
+
+
+    window.addEventListener('resize', isMobileObs);
+    this.isMobile = window.innerWidth <= 991.98;
+    toggleUiElements();
+}
+
+function toggleUiElements() {
+    if (this.isMobile) {
+        this.sidebar.classList.add("d-none");
+        this.navbar.classList.remove("d-none");
+    }
+    else {
+        this.sidebar.classList.remove("d-none");
+        this.navbar.classList.add("d-none");
+    }
+}
+
+
+
+function isMobileObs() {
+    this.isMobile = window.innerWidth <= 991.98;
+    toggleUiElements();
+}
 
 function initCards() {
     for (var i = 1; i <= 10; i++) { // generate 10 pairs
