@@ -65,22 +65,35 @@ function isMobileObs() {
 }
 
 function initCards() {
-    for (var i = 1; i <= 10; i++) { // generate 10 pairs
-        for (var j = 1; j <= 2; j++) { // generate 2 cards per pair
-            var card = document.createElement('div'); // create Card
+    for (let i = 1; i <= 10; i++) { // generate 10 pairs
+        for (let j = 1; j <= 2; j++) { // generate 2 cards per pair
+
+            const col = document.createElement('div');
+            col.className = "col-3 py-2 ";
+
+            const card = document.createElement('div');
             card.id = i + "" + j;
             card.setAttribute("onclick", "DisplayCard(this)");
-            card.className = "gamecard";
+            card.className = "gamecard shadow mx-auto"; // gamecard
             card.setAttribute("data-value", i);
-            var cardImg = document.createElement('div'); // add card image
-            cardImg.className = "cardimg";
+
+
+            const cardImg = document.createElement('div');
+            // cardImg.src = "assets/decks/" + selectedDeck + "/image" + i + ".jpg"
+            cardImg.className = "card-img cardimg"; // cardimg
             cardImg.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/image" + i + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
-            var cardBG = document.createElement('div'); // add card background
-            cardBG.className = "cardbg";
+
+            const cardBG = document.createElement('div'); // add card background
+            // cardImg.src = "assets/decks/" + selectedDeck + "/background" + ".jpg";
+            cardBG.className = "card-img cardbg"; // cardbg
             cardBG.setAttribute("style", "background-image: url('assets/decks/" + selectedDeck + "/background" + ".jpg');background-size: 100% 100%;"); // use background img to avoid problems with extension IMAGUS
+
             card.append(cardImg);
             card.append(cardBG);
-            cardlist.appendChild(card);
+
+            col.append(card);
+
+            cardlist.appendChild(col);
         }
     }
     RandomizeCards();
