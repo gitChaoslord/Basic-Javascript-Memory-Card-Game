@@ -13,6 +13,7 @@ var TotalMatches = 0; // Counter for win condition
 
 // Score Variables
 var HighscoreListElement = null;
+var HighscoreListMobileElement = null;
 
 var highscoreList = [];
 var TotalTries = 0;
@@ -85,6 +86,7 @@ window.onload = function () {
     TotalTriesElement = document.getElementById("Tries");
     GameScoreElement = document.getElementById("Score");
     HighscoreListElement = document.getElementById("highscore-list");
+    HighscoreListMobileElement = document.getElementById("highscore-list-mobile");
     sidebar = document.getElementById("sidebar-left");
     navbar = document.getElementById("navbar");
 
@@ -299,14 +301,11 @@ function buildHighscores() {
 
     while (i < nodes.length) {
         HighscoreListElement.appendChild(nodes[i]);
+        HighscoreListMobileElement.appendChild(nodes[i]);
         // TODO: isws einai perito na to kanw kol giati to highscore table de tha ginete rebuild otan patiete reset button, ara one time on load
         //maybe an thelw na allazei dunamika o pinakas an briskete neo highscore meta apo game
-        var y = document.getElementById("highscorelist").lastElementChild
-        y.style.fontWeight = "normal";
         ++i;
     }
-    var x = document.getElementById("highscorelist").firstElementChild;
-    x.style.fontWeight = "bold";
 }
 
 function WinGame() {
@@ -319,6 +318,7 @@ function WinGame() {
 
 function RebuildHighscores() {
     HighscoreListElement.innerHTML = ""; // Clears Highscore list
+    HighscoreListMobileElement.innerHTML = "";
 
     if (init == 1) {
         var HighScores = JSON.parse(localStorage.getItem('highscoresList')) || [];
@@ -336,9 +336,15 @@ function RebuildHighscores() {
         var HighscoreNode = document.createElement("li");
 
         var HighscoreTxt = document.createTextNode(highscoreList[i].PlayerName + " - " + highscoreList[i].GameScore);
+
         HighscoreNode.appendChild(HighscoreTxt);
         HighscoreNode.className = 'list-group-item';
-        HighscoreListElement.appendChild(HighscoreNode);
+
+        let newNode = HighscoreNode.cloneNode(true);
+
+
+        HighscoreListMobileElement.appendChild(HighscoreNode);
+        HighscoreListElement.appendChild(newNode);
     }
 
 }
